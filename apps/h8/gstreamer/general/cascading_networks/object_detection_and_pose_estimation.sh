@@ -2,14 +2,14 @@
 set -e
 
 function init_variables() {
+    print_help_if_needed $@
+    script_dir=$(dirname $(realpath "$0"))
+    source $script_dir/../../../../../scripts/misc/checks_before_run.sh
+
     readonly DEFAULT_MAX_CAMERA_WIDTH="1920"
     readonly DEFAULT_MAX_CAMERA_HEGIHT="1080"
     readonly RESOURCES_DIR="$TAPPAS_WORKSPACE/apps/h8/gstreamer/general/cascading_networks/resources"
     readonly DEFAULT_DETECTION_VIDEO_SOURCE="$RESOURCES_DIR/instance_segmentation.mp4"
-
-    print_help_if_needed $@
-    script_dir=$(dirname $(realpath "$0"))
-    source $script_dir/../../../../../scripts/misc/checks_before_run.sh
 
     readonly POSTPROCESS_DIR="$TAPPAS_WORKSPACE/apps/h8/gstreamer/libs/post_processes"
     readonly CROPING_ALGORITHMS_DIR="$POSTPROCESS_DIR/cropping_algorithms"
